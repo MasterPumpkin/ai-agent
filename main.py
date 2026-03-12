@@ -1,5 +1,22 @@
 import streamlit as st
 from groq import Groq
+import unicodedata
+import re
+
+def sanitize_filename(text):
+    if not text:
+        return "bez_nazvu"
+    
+    # 1. Odstranění diakritiky (převede např. 'Český dějepis' na 'Cesky dejepis')
+    text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
+    
+    # 2. Převod na malá písmena a nahrazení mezer podtržítky
+    text = text.lower().replace(' ', '_')
+    
+    # 3. Odstranění všeho, co nejsou písmena, čísla nebo podtržítka (odstraní např. tečky, otazníky)
+    text = re.sub(r'[^a-z0-9_]', '', text)
+    
+    return text
 
 # 1. Nastavení aplikace
 st.set_page_config(page_title="Tvorba AI Asistentů", page_icon="🎯", layout="centered")
@@ -85,3 +102,30 @@ if st.session_state.final_prompt:
     st.subheader("Váš optimalizovaný systémový prompt:")
     st.metric(label="Celkem spotřebováno tokenů (vč. vnitřní kontroly)", value=st.session_state.used_tokens)
     st.code(st.session_state.final_prompt, language="markdown")
+
+    st.divider()
+    
+    # Sestavení textu pro export (využití Markdown formátu s hlavičkou)
+    export_text = f"""---
+Předmět: {subject}
+Téma: {topic}
+Cílová skupina: {students}
+Cíl asistenta: {goal}
+---
+
+# Systémový prompt
+
+{st.session_state.final_prompt}
+"""
+
+    # Vytvoření bezpečného názvu souboru bez diakritiky a mezer
+    safe_subject = sanitize_filename(subject)
+
+    # Streamlit tlačítko pro stažení souboru
+    st.download_button(
+        label="💾 Stáhnout prompt jako Markdown (.md)",
+        data=export_text,
+        file_name=f"prompt_{safe_subject}.md",
+        mime="text/markdown",
+        type="secondary"
+    )
