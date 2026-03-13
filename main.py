@@ -161,7 +161,8 @@ def main():
     with st.sidebar:
         st.header("Nastavení")
         api_key = st.text_input("Groq API klíč:", value=env_key if env_key else "", type="password")
-        st.info("Tip: Klíč můžete nastavit trvale jako proměnnou prostředí `GROQ_API_KEY` nebo v souboru `.env`.")
+        st.info("💡 **Kde získat API klíč?**")
+        st.markdown("1. Jděte na [console.groq.com](https://console.groq.com/keys).\n2. Přihlaste se.\n3. Klikněte na **Create API Key**.\n4. Zkopírujte kód začínající `gsk_`.")
 
     # Main screen API key reminder
     if not api_key:
