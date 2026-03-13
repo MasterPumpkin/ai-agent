@@ -1,22 +1,26 @@
-# 🎯 AI Prompt Generator (RTRI, RISEN & more)
+# 🤖 AI Agent Generátor & Tester (Pro školství i praxi)
 
-Tato aplikace je profesionální nástroj postavený na **Streamlit** a **Groq API**, který využívá moderní metodiky (frameworky) prompt inženýringu pro tvorbu neprůstřelných systémových promptů pro AI asistenty.
+Tato aplikace je profesionální nástroj postavený na **Streamlit** a **Groq API**. Pomáhá uživatelům (zejména pedagogům) nejen navrhnout neprůstřelný systémový prompt pomocí osvědčených metodik, ale rovnou ho i **otestovat v simulovaném souboji proti umělé inteligenci v roli vynalézavého žáka**.
 
-Aplikace sází na dvoufázový proces **REFINE** (Evaluation & Iterative Refinement) – AI nejprve navrhne strukturu podle zvolené metodiky a následně ji kriticky zhodnotí a vylepší.
+Aplikace sází na dvoufázový proces **REFINE** při tvorbě zadání a na pokročilý **Automated Red Teaming** při jeho testování.
 
 ## 🚀 Hlavní funkce
 
-*   **7 Specializovaných metodik**:
-    *   **RTRI**: Metodika pro pedagogy (Role - Task - Requirements - Instructions).
-    *   **RISEN**: Robustní struktura pro komplexní úkoly.
-    *   **CO-STAR**: Ideální pro marketing a textovou tvorbu (Context - Objective - Style - Tone - Audience - Response).
-    *   **T.A.G.**: Zaměřeno na bezpečnost a mantinely (Task - Audience - Guardrails).
-    *   **T.R.A.C.E.**: Pro technické a programátorské úkoly.
-    *   **R.A.S.E.**: Klasické zadání s důrazem na roli.
-    *   **5S**: Srozumitelné a čisté prompty.
-*   **Dvoufázová optimalizace**: Každý prompt prochází automatickou kontrolou a iterativním vylepšením.
-*   **Dynamické rozhraní**: Formulář se přizpůsobuje zvolené metodice a nabízí relevantní nápovědu i příklady.
-*   **Export do Markdownu**: Vygenerované prompty lze stáhnout jako soubor `.md`.
+* **📝 Generátor promptů (7 Specializovaných metodik)**:
+    * **RTRI**: Metodika pro pedagogy (Role - Task - Requirements - Instructions).
+    * **RISEN**: Robustní struktura pro komplexní úkoly.
+    * **CO-STAR**: Ideální pro marketing a textovou tvorbu.
+    * **T.A.G.**: Zaměřeno na bezpečnost a mantinely.
+    * **T.R.A.C.E.**: Pro technické a programátorské úkoly.
+    * **R.A.S.E.**: Klasické zadání s důrazem na roli.
+    * **5S**: Srozumitelné a čisté prompty.
+* **🛡️ Automatický zátěžový test (Red Teaming)**: 
+    * Možnost okamžitě otestovat vygenerovaný prompt v tříkolovém dynamickém chatu.
+    * AI simuluje chování "líného a zákeřného studenta", který se snaží agenta přimět k řešení úkolů za něj nebo k vyzrazení tajných instrukcí.
+* **⚖️ LLM-as-a-Judge (Nezávislý Soudce)**: Po skončení zátěžového testu zanalyzuje třetí AI model celou konverzaci a vynese objektivní verdikt (Úspěch/Selhání) včetně doporučení k opravě promptu.
+* **⚙️ Volba AI modelů**: Podpora přepínání mezi modely `llama-3.3-70b-versatile` (vysoká inteligence) a `llama-3.1-8b-instant` (extrémní rychlost a úspora tokenů).
+* **🔒 Automatické bezpečnostní restrikce**: Generátor do každého promptu natvrdo vkládá zákazy psaní úkolů za žáky a obranu proti jailbreakingu.
+* **📊 Počítadlo tokenů**: Transparentní zobrazení spotřeby API tokenů po každé akci.
 
 ## 🛠️ Instalace a spuštění
 
@@ -24,7 +28,7 @@ Aplikace využívá nástroj `uv` pro správu závislostí.
 
 1.  **Klonování repozitáře**:
     ```bash
-    git clone https://github.com/MasterPumpkin/ai-agent.git
+    git clone [https://github.com/MasterPumpkin/ai-agent.git](https://github.com/MasterPumpkin/ai-agent.git)
     cd ai-agent
     ```
 
@@ -38,14 +42,16 @@ Aplikace využívá nástroj `uv` pro správu závislostí.
     ```bash
     uv run streamlit run main.py
     ```
-    *(Pokud nemáte `uv`, můžete použít standardní `pip install -r requirements.txt` nebo `pip install streamlit groq python-dotenv`.)*
+    *(Pokud nemáte `uv`, můžete použít standardní `pip install streamlit groq python-dotenv` a poté `streamlit run main.py`.)*
 
-## 📖 Použité metodiky
+## 📖 Jak aplikaci používat
 
-Detailní popisy a příklady všech metodik jsou dostupné přímo v rozhraní aplikace pod sekcí **„Detailní přehled metodik“**.
+1.  **Tvorba Promptu (Záložka 1):** Vyberte metodiku, vyplňte téma a hlavní cíl asistenta. Klikněte na vygenerování. AI váš nápad rozpracuje a následně sama zkritizuje a vylepší.
+2.  **Zátěžový Test (Záložka 2):** Přejděte do druhé záložky, kde se váš čerstvý prompt automaticky zkopíroval. Spusťte "simulovaný útok" a sledujte konverzaci v reálném čase.
+3.  **Nasazení:** Pokud Soudce test vyhodnotí jako "ÚSPĚCH", stáhněte si prompt (nebo jej zkopírujte) a vložte jej do své oblíbené AI platformy (např. Poe.com, Coze.com nebo Mizou.com).
 
 ## 🛡️ Zabezpečení
-Aplikace nikdy neukládá vaše API klíče na žádný server. Klíč je uložen pouze lokálně ve vašem prostředí nebo v paměti sezení prohlížeče.
+Aplikace nikdy neukládá vaše API klíče na žádný server. Klíč je uložen pouze lokálně ve vašem prostředí nebo v paměti aktuálního sezení prohlížeče.
 
 ## 📜 Licence
 Tento projekt je volně k použití (MIT License).

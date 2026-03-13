@@ -22,3 +22,6 @@ wheels/
 
 # Temporary files
 tmp/
+
+# Old version of the project
+old/
