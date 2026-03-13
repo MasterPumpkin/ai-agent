@@ -137,7 +137,7 @@ class GroqAssistant:
         yield "final", final_text, total_tokens
 
 # --- UI SETUP ---
-st.set_page_config(page_title="Tvorba AI Asistentů", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="AI Prompt Generátor", page_icon="🎯", layout="wide")
 
 def init_session_state():
     if "final_prompt" not in st.session_state:
@@ -149,7 +149,7 @@ def main():
     init_session_state()
 
     st.title("🎯 Generátor profesionálních promptů")
-    st.markdown("Využijte špičkové prompt inženýrské rámce pro tvorbu neprůstřelných AI asistentů.")
+    st.markdown("Využijte osvědčené postupy pro tvorbu zadání (promptů), díky nimž můžete vytvářet spolehlivé a dobře fungující AI asistenty.")
 
     # API Key initialization for the whole app
     env_key = os.getenv("GROQ_API_KEY")
