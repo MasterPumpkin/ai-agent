@@ -28,7 +28,7 @@ Aplikace využívá nástroj `uv` pro správu závislostí.
 
 1.  **Klonování repozitáře**:
     ```bash
-    git clone [https://github.com/MasterPumpkin/ai-agent.git](https://github.com/MasterPumpkin/ai-agent.git)
+    git clone https://github.com/MasterPumpkin/ai-agent.git
     cd ai-agent
     ```
 
